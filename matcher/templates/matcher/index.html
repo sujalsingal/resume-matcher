@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume-JD Matcher</title>
+  <link rel="stylesheet" href="{% static 'matcher/css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Resume-JD Matching Tool</h1>
+    <form id="match-form">
+      <div class="input-section">
+        <label>Resume</label>
+        <div class="tabs">
+          <button type="button" class="tab-btn active" data-tab="resume-text">Paste text</button>
+          <button type="button" class="tab-btn" data-tab="resume-file">Upload PDF</button>
+        </div>
+        <textarea id="resume-text" name="resume_text" class="tab-panel active" placeholder="Paste resume text here..."></textarea>
+        <input type="file" id="resume-file" name="resume_file" class="tab-panel" accept=".pdf" style="display:none;">
+      </div>
+      <div class="input-section">
+        <label for="jd-text">Job description</label>
+        <textarea id="jd-text" name="jd_text" placeholder="Paste job description here..." required></textarea>
+      </div>
+      <button type="submit" id="submit-btn">Analyze match</button>
+    </form>
+    <div id="loading" class="hidden">Analyzing...</div>
+    <div id="error" class="hidden error"></div>
+    <div id="results" class="hidden">
+      <div class="score-section">
+        <div class="score-circle" id="score-value">--</div>
+        <p id="score-summary"></p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-column">
+          <h3>Must-have - matched</h3>
+          <div id="must-matched" class="tag-list"></div>
+          <h3>Must-have - missing</h3>
+          <div id="must-missing" class="tag-list missing"></div>
+        </div>
+        <div class="skill-column">
+          <h3>Nice-to-have - matched</h3>
+          <div id="nice-matched" class="tag-list"></div>
+          <h3>Nice-to-have - missing</h3>
+          <div id="nice-missing" class="tag-list missing"></div>
+        </div>
+      </div>
+      <div class="suggestions-section">
+        <h3>Suggestions</h3>
+        <ul id="suggestions-list"></ul>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'matcher/js/main.js' %}"></script>
+</body>
+</html>
